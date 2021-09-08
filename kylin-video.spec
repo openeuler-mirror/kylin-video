@@ -2,7 +2,7 @@
 
 Name:           kylin-video
 Version:        2.1.1.1
-Release:        1
+Release:        2
 Summary:        A powerful video player
 
 License:        LGPL-2.0-only and LGPL-2.1-only and GPL-2.0-only and LGPL-2.0-or-later and GPL-2.0-or-later and BSD and LGPL-3.0-only and GPL-3.0-only
@@ -31,7 +31,7 @@ BuildRequires:  pkgconfig(xext)
 BuildRequires:  qt5-qtbase-private-devel
 BuildRequires:  pkgconfig(zlib)
 Requires:       hicolor-icon-theme
-
+Requires:       mpv
 
 
 %{?kf5_kinit_requires}
@@ -67,6 +67,9 @@ cd %{_builddir}/%{name}-%{version}
 
 
 %changelog   
+* Wed Sep 8 2021 peijiankang <peijiankang@kylinos.cn> - 2.1.1.1-2
+- add mpv requires
+
 * Fri Aug 20 2021 tongzong <2505108658@qq.com> - 2.1.1.1-1   
 - package init
 
