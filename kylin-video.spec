@@ -2,9 +2,9 @@
 
 Name:           kylin-video
 Version:        3.1.3
-Release:        1
+Release:        2
 Summary:        A powerful video player
-License:        GPL-2.0-or-later
+License:        GPL-2.0-or-later and LGPL-2.0-or-later and BSD
 URL:            https://github.com/UbuntuKylin/kylin-video
 Source0:        kylin-video-3.1.3.tar.gz
 Patch1:         0001-modify-compile-error-of-kylin-video.patch
@@ -55,6 +55,8 @@ pushd qmake-build
 popd 
 
 %files
+%license COPYING debian/copyright
+%doc README.md 
 %{_bindir}/kylin-video-new
 %{_datadir}/applications/kylin-video.desktop
 %{_datadir}/kylin-user-guide/data/guide/kylin-video/*
@@ -62,6 +64,9 @@ popd
 
 
 %changelog   
+* Wed Jun 8 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-2
+- add copyright file
+
 * Wed Jun 8 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-1
 - update version to 3.1.3
 
