@@ -1,72 +1,70 @@
 %global debug_package %{nil}
 
 Name:           kylin-video
-Version:        2.1.1.1
-Release:        2
+Version:        3.1.3
+Release:        1
 Summary:        A powerful video player
-
-License:        LGPL-2.0-only and LGPL-2.1-only and GPL-2.0-only and LGPL-2.0-or-later and GPL-2.0-or-later and BSD and LGPL-3.0-only and GPL-3.0-only
-URL:            https://www.ubuntukylin.com/applications/26-cn.html
-Source0:        https://github.com/UbuntuKylin/kylin-video/kylin-video-2.1.1.1.tar.gz
-Patch1:         fix-lrelease.patch
+License:        GPL-2.0-or-later
+URL:            https://github.com/UbuntuKylin/kylin-video
+Source0:        kylin-video-3.1.3.tar.gz
+Patch1:         0001-modify-compile-error-of-kylin-video.patch
 
 BuildRequires:  qt5-devel
-BuildRequires:  desktop-file-utils
-BuildRequires:  gcc-c++
-BuildRequires:  libappstream-glib
-BuildRequires:  pkgconfig(Qt5)
-BuildRequires:  pkgconfig(Qt5Designer)
-BuildRequires:  pkgconfig(Qt5Concurrent)
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Network)
-BuildRequires:  pkgconfig(Qt5PrintSupport)
-BuildRequires:  pkgconfig(Qt5Script)
-BuildRequires:  pkgconfig(Qt5Sql)
-BuildRequires:  pkgconfig(Qt5WebKitWidgets)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5Xml)
-BuildRequires:  pkgconfig(xext)
+BuildRequires:  qtchooser
+BuildRequires:  qt5-qtscript-devel
+BuildRequires:  qt5-qttools-devel
 BuildRequires:  qt5-qtbase-private-devel
-BuildRequires:  pkgconfig(zlib)
-Requires:       hicolor-icon-theme
-Requires:       mpv
+BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  libX11-devel
+BuildRequires:  libcrystalhd-devel
+BuildRequires:  zlib-devel 
+BuildRequires:  ffmpeg-devel
+BuildRequires:  gsettings-qt-devel
+BuildRequires:  mpv-libs-devel
+BuildRequires:  kf5-kwindowsystem-devel
+BuildRequires:  kf5-kwayland-devel
+BuildRequires:  wayland-devel
+BuildRequires:  libzen-devel  
+BuildRequires:  libmediainfo-devel
+BuildRequires:  ffmpegthumbnailer-devel
+BuildRequires:  ukui-interface
 
+Requires:       mesa-vdpau-drivers libcrystalhd-devel mpv ffmpegthumbnailer-devel
 
-%{?kf5_kinit_requires}
-
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
 
 %description
-Kylin Video utilizes MPV and MPlayer as background play engine (use MPV by default). Its GUI front end is written by Qt5. Plus, it supports both x86 and ARM platform. As a powerful video player, Kylin Video supports most of the audio and video formats. Functions of shortcut keys/ preview/ screenshot/ sound settings/ subtitles and so on are provided. Users can even customize settings as they like.
-
-
+Front-end for MPlayer and MPV Qt5 Mplayer and MPV front-end, with basic features like playing videos and audios to more advanced features.
+It supports both x86 and ARM platform, and supports most of the audio and video formatsprep
 
 %prep
-%autosetup -p1
+%setup -q
+%patch1 -p1
 
 
 %build
-%{qmake_qt5}
-%make_build
-
+export PATH=%{_qt5_bindir}:$PATH
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} ..
+%{make_build}
+popd 
 
 %install
-cd %{_builddir}/%{name}-%{version}
-%make_install  PREFIX=%{_prefix} INSTALL_ROOT=%{buildroot} 
-
+pushd qmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd 
 
 %files
-%license COPYING
-%doc README.md
-%{_bindir}/*
-%{_datarootdir}/*
-
+%{_bindir}/kylin-video-new
+%{_datadir}/applications/kylin-video.desktop
+%{_datadir}/kylin-user-guide/data/guide/kylin-video/*
+%{_datadir}/kylin-video/translations/kylin-video_zh_CN.qm
 
 
 %changelog   
+* Wed Jun 8 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-1
+- update version to 3.1.3
+
 * Wed Sep 8 2021 peijiankang <peijiankang@kylinos.cn> - 2.1.1.1-2
 - add mpv requires
 
