@@ -2,7 +2,7 @@
 
 Name:           kylin-video
 Version:        3.1.3
-Release:        3
+Release:        4
 Summary:        A powerful video player
 License:        GPL-2.0-or-later and LGPL-2.0-or-later and BSD
 URL:            https://github.com/UbuntuKylin/kylin-video
@@ -30,7 +30,7 @@ BuildRequires:  libmediainfo-devel
 BuildRequires:  ffmpegthumbnailer-devel
 BuildRequires:  ukui-interface
 
-Requires:       mesa-vdpau-drivers libcrystalhd-devel mpv ffmpegthumbnailer-devel
+Requires:       mesa-vdpau-drivers libcrystalhd-devel mpv ffmpegthumbnailer-devel tinyxml2
 
 
 %description
@@ -66,6 +66,9 @@ popd
 
 
 %changelog   
+* Wed Aug 19 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-4
+- add tinyxml2 requires
+
 * Thu Jun 9 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-3
 - Fix the problem of the help manual button
 
