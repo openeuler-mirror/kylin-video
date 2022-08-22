@@ -2,13 +2,14 @@
 
 Name:           kylin-video
 Version:        3.1.3
-Release:        4
+Release:        5
 Summary:        A powerful video player
 License:        GPL-2.0-or-later and LGPL-2.0-or-later and BSD
 URL:            https://github.com/UbuntuKylin/kylin-video
 Source0:        kylin-video-3.1.3.tar.gz
 Patch1:         0001-modify-compile-error-of-kylin-video.patch
 Patch2:         0002-Fix-the-problem-of-the-help-manual-button.patch
+Patch3:         0003-modify-version-is-error.patch
 
 BuildRequires:  qt5-devel
 BuildRequires:  qtchooser
@@ -41,6 +42,7 @@ It supports both x86 and ARM platform, and supports most of the audio and video 
 %setup -q
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 
 %build
@@ -66,6 +68,9 @@ popd
 
 
 %changelog   
+* Mon Aug 22 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-5
+- modify version is error 
+
 * Wed Aug 19 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-4
 - add tinyxml2 requires
 
