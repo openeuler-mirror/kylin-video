@@ -1,0 +1,25 @@
+From 3671a414343f43244cd15bf2581dbc3f75327f73 Mon Sep 17 00:00:00 2001
+From: peijiankang <peijiankang@kylinos.cn>
+Date: Mon, 22 Aug 2022 17:42:27 +0800
+Subject: [PATCH] Fix about background not changing with style
+
+---
+ src/global/global.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/global/global.h b/src/global/global.h
+index 8da1296..bc31db6 100644
+--- a/src/global/global.h
++++ b/src/global/global.h
+@@ -42,7 +42,7 @@ class QGSettings;
+ class ShortCutSetting;
+ //using namespace Control;
+ #define ORG_UKUI_STYLE      "org.ukui.style"
+-#define STYLE_UKUI_DEFAULT  "ukui"
++#define STYLE_UKUI_DEFAULT  "ukui-default"
+ #define STYLE_UKUI_BLACK    "ukui-dark"
+ #define ICO_DIR_DEFAULT     "ico_light"
+ #define ICO_DIR_DBLACK      "ico"
+-- 
+2.33.0
+
