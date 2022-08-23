@@ -2,7 +2,7 @@
 
 Name:           kylin-video
 Version:        3.1.3
-Release:        5
+Release:        6
 Summary:        A powerful video player
 License:        GPL-2.0-or-later and LGPL-2.0-or-later and BSD
 URL:            https://github.com/UbuntuKylin/kylin-video
@@ -10,6 +10,7 @@ Source0:        kylin-video-3.1.3.tar.gz
 Patch1:         0001-modify-compile-error-of-kylin-video.patch
 Patch2:         0002-Fix-the-problem-of-the-help-manual-button.patch
 Patch3:         0003-modify-version-is-error.patch
+Patch4:         0004-Fix-about-background-not-changing-with-style.patch
 
 BuildRequires:  qt5-devel
 BuildRequires:  qtchooser
@@ -43,6 +44,7 @@ It supports both x86 and ARM platform, and supports most of the audio and video 
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 
 %build
@@ -68,6 +70,9 @@ popd
 
 
 %changelog   
+* Mon Aug 22 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-6
+- Fix about background not changing with style 
+
 * Mon Aug 22 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-5
 - modify version is error 
 
