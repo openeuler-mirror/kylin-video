@@ -1,0 +1,33 @@
+From 04941e0bd5c400905ecb130bdeab327c408cd491 Mon Sep 17 00:00:00 2001
+From: huayadong <huayadong@kylinos.cn>
+Date: Thu, 8 Sep 2022 14:23:42 +0800
+Subject: [PATCH] ssssssssssssss
+
+---
+ src/topwindow.cpp | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/topwindow.cpp b/src/topwindow.cpp
+index f55bdc2..2b3d61a 100644
+--- a/src/topwindow.cpp
++++ b/src/topwindow.cpp
+@@ -1,5 +1,4 @@
+ #include "topwindow.h"
+-
+ #include <QDebug>
+ #include <QTimer>
+ #include <QMimeData>
+@@ -399,8 +398,8 @@ void TopWindow::moveEvent(QMoveEvent *e)
+ 
+ void TopWindow::mouseMoveEvent(QMouseEvent *e)
+ {
+-    if (m_isMove) {
+-        move(pos() + e->pos() - m_pressPos);
++    if (m_isMove){
++        move(e->globalPos() - m_pressPos);
+     }
+ }
+ 
+-- 
+2.36.1
+
