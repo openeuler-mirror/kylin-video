@@ -2,7 +2,7 @@
 
 Name:           kylin-video
 Version:        3.1.3
-Release:        6
+Release:        7
 Summary:        A powerful video player
 License:        GPL-2.0-or-later and LGPL-2.0-or-later and BSD
 URL:            https://github.com/UbuntuKylin/kylin-video
@@ -11,6 +11,7 @@ Patch1:         0001-modify-compile-error-of-kylin-video.patch
 Patch2:         0002-Fix-the-problem-of-the-help-manual-button.patch
 Patch3:         0003-modify-version-is-error.patch
 Patch4:         0004-Fix-about-background-not-changing-with-style.patch
+Patch5:         0005-fix-the-window-jump-problem-when-dragging-the-window.patch
 
 BuildRequires:  qt5-devel
 BuildRequires:  qtchooser
@@ -45,6 +46,7 @@ It supports both x86 and ARM platform, and supports most of the audio and video 
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 
 %build
@@ -70,6 +72,9 @@ popd
 
 
 %changelog   
+* Thu Dec 15 2022 huayadong <huayadong@kylinos.cn> - 3.1.3-7
+- Fix the window jump problem when dragging the window
+
 * Mon Aug 22 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.3-6
 - Fix about background not changing with style 
 
