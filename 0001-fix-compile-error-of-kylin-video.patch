@@ -1,0 +1,71 @@
+From ac49dca45e090301659418b050550b52663a0832 Mon Sep 17 00:00:00 2001
+From: peijiankang <peijiankang@kylinos.cn>
+Date: Thu, 1 Dec 2022 10:12:04 +0800
+Subject: [PATCH] fix compile error of kylin-video
+
+---
+ .../resource/ico/menubar/shuoming.png               | Bin
+ src/resource/res.qrc                                |   2 +-
+ src/resource/resource.qrc                           |   2 +-
+ src/src.pro                                         |   2 +-
+ src/translations/generate_translations_pm.sh        |   2 +-
+ 5 files changed, 4 insertions(+), 4 deletions(-)
+ rename "src/resource/ico/menubar/\303\250\302\257\302\264\303\246\302\230\302\216.png" => src/resource/ico/menubar/shuoming.png (100%)
+
+diff --git "a/src/resource/ico/menubar/\303\250\302\257\302\264\303\246\302\230\302\216.png" b/src/resource/ico/menubar/shuoming.png
+similarity index 100%
+rename from "src/resource/ico/menubar/\303\250\302\257\302\264\303\246\302\230\302\216.png"
+rename to src/resource/ico/menubar/shuoming.png
+diff --git a/src/resource/res.qrc b/src/resource/res.qrc
+index fe53d93..7c039de 100644
+--- a/src/resource/res.qrc
++++ b/src/resource/res.qrc
+@@ -24,7 +24,7 @@
+         <file>ico/menubar/zuixh_b_3x.png</file>
+         <file>ico/menubar/zuixh_c_3x.png</file>
+         <file>ico/menubar/zuixh_d_3x.png</file>
+-        <file>ico/menubar/è¯´æ.png</file>
++        <file>ico/menubar/shuoming.png</file>
+         <file>ico/application-exit-symbolic@2x.png</file>
+         <file>ico/audio-volume-high-symbolic-h.png</file>
+         <file>ico/audio-volume-medium-symbolic-h.png</file>
+diff --git a/src/resource/resource.qrc b/src/resource/resource.qrc
+index b68f280..a876eb4 100644
+--- a/src/resource/resource.qrc
++++ b/src/resource/resource.qrc
+@@ -8,7 +8,7 @@
+         <file>ico/menubar/caidan_b_3x.png</file>
+         <file>ico/menubar/caidan_c_3x.png</file>
+         <file>ico/menubar/caidan_d_3x.png</file>
+-        <file>ico/menubar/è¯´æ.png</file>
++        <file>ico/menubar/shuoming.png</file>
+         <file>ico/menubar/guanbi_a_3x.png</file>
+         <file>ico/menubar/guanbi_b_3x.png</file>
+         <file>ico/menubar/guanbi_c_3x.png</file>
+diff --git a/src/src.pro b/src/src.pro
+index 18450f5..fe120e9 100644
+--- a/src/src.pro
++++ b/src/src.pro
+@@ -20,7 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS _UNICODE
+ # You can also select to disable deprecated APIs only up to a certain version of Qt.
+ #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+ 
+-INCLUDEPATH += /usr/include/KF5/KWindowSystem/ ./log ./sliderbar ./kwidget
++INCLUDEPATH += /usr/include/KF5/KWindowSystem/ /usr/include/ffmpeg ./log ./sliderbar ./kwidget
+ 
+ !system($$PWD/translations/generate_translations_pm.sh): error("Failed to generate pm")
+ qm_files.files = translations/*.qm
+diff --git a/src/translations/generate_translations_pm.sh b/src/translations/generate_translations_pm.sh
+index a5e938e..2359710 100755
+--- a/src/translations/generate_translations_pm.sh
++++ b/src/translations/generate_translations_pm.sh
+@@ -4,5 +4,5 @@ ts_file_list=(`ls translations/*.ts`)
+ 
+ for ts in "${ts_file_list[@]}"
+ do
+-	lrelease "${ts}"
++	lrelease-qt5 "${ts}"
+ done
+-- 
+2.33.0
+
