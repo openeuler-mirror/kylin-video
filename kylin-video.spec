@@ -1,8 +1,6 @@
-%global debug_package %{nil}
-
 Name:           kylin-video
 Version:        3.1.4
-Release:        1
+Release:        2
 Summary:        A powerful video player
 License:        GPL-2.0+
 URL:            https://gitee.com/openkylin/kylin-video
@@ -55,6 +53,7 @@ pushd qmake-build
 popd 
 
 %files
+%license debian/copyright
 %{_bindir}/kylin-video
 %{_datadir}/applications/kylin-video.desktop
 %{_datadir}/kylin-user-guide/data/guide/kylin-video/*
@@ -62,6 +61,9 @@ popd
 
 
 %changelog   
+* Tue Feb 07 2023 peijiankang <peijiankang@kylinos.cn> - 3.1.4-2
+- add build debuginfo and debugsource
+
 * Thu Dec 1 2022 peijiankang <peijiankang@kylinos.cn> - 3.1.4-1
   update verison to 3.1.4(2022.12.01)
 
