@@ -1,11 +1,12 @@
 Name:           kylin-video
 Version:        3.1.4
-Release:        2
+Release:        3
 Summary:        A powerful video player
 License:        GPL-2.0+
 URL:            https://gitee.com/openkylin/kylin-video
 Source0:        kylin-video-3.1.4.tar.gz
-Patch1:         0001-fix-compile-error-of-kylin-video.patch
+Patch01:         0001-fix-compile-error-of-kylin-video.patch
+Patch02:        0002-Repair-the-user-guide-does-not-work.patch
 
 BuildRequires:  ffmpeg-devel
 BuildRequires:  libcrystalhd-devel
@@ -39,6 +40,7 @@ It supports both x86 and ARM platform, and supports most of the audio and video 
 %prep
 %setup -q
 %patch01 -p1
+%patch02 -p1
 
 %build
 mkdir qmake-build
@@ -61,6 +63,9 @@ popd
 
 
 %changelog   
+* Mon Mar 06 2023 peijiankang <peijiankang@kylinos.cn> - 3.1.4-3
+- Repair the user guide does not work
+
 * Tue Feb 07 2023 peijiankang <peijiankang@kylinos.cn> - 3.1.4-2
 - add build debuginfo and debugsource
 
