@@ -1,0 +1,55 @@
+From b3aed237023c99049dc4a7810fabc5ee8c37fbdf Mon Sep 17 00:00:00 2001
+From: peijiankang <peijiankang@kylinos.cn>
+Date: Mon, 6 Mar 2023 16:23:06 +0800
+Subject: [PATCH] Repair the user guide does not work
+
+---
+ src/mainwindow.cpp   | 3 ++-
+ src/widget/kmenu.cpp | 3 ++-
+ src/widget/kmenu.h   | 2 +
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index 8925988..c69ee0a 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -786,7 +786,8 @@ void MainWindow::slotChangeMiniState()
+ void MainWindow::slotOpenHelpDoc()
+ {
+     // 帮助手册 先就分开写吧，快捷键不生效不知道为啥
+-    QDBusMessage m = QDBusMessage::createMethodCall("com.kylinUserGuide.hotel_1000",
++    QString service_name = "com.kylinUserGuide.hotel_" + QString::number(getuid());
++    QDBusMessage m = QDBusMessage::createMethodCall(service_name,
+                                                     "/",
+                                                     "com.guide.hotel",
+                                                     "showGuide");
+diff --git a/src/widget/kmenu.cpp b/src/widget/kmenu.cpp
+index 72176cb..1b90a76 100644
+--- a/src/widget/kmenu.cpp
++++ b/src/widget/kmenu.cpp
+@@ -1136,7 +1136,8 @@ void TitleMenu::createHelpMenu()
+     act_f1 = new KAction(QKeySequence("F1"), nullptr, "manual");
+     connect(act_f1, &KAction::triggered, [this](){
+         // 帮助手册
+-        QDBusMessage m = QDBusMessage::createMethodCall("com.kylinUserGuide.hotel_1000",
++      	 QString service_name = "com.kylinUserGuide.hotel_" + QString::number(getuid());
++        QDBusMessage m = QDBusMessage::createMethodCall(service_name,
+                                                         "/",
+                                                         "com.guide.hotel",
+                                                         "showGuide");
+diff --git a/src/widget/kmenu.h b/src/widget/kmenu.h
+index 62abafc..42859b2 100644
+--- a/src/widget/kmenu.h
++++ b/src/widget/kmenu.h
+@@ -3,6 +3,8 @@
+ 
+ #include <QMenu>
+ #include "core/mpvtypes.h"
++#include <unistd.h>
++#include <sys/types.h>
+ 
+ #define OfficialWebsite "https://www.kylinos.cn"
+ #define AdvideFeedback  "mailto:product@kylinos.cn"
+-- 
+2.33.0
+
