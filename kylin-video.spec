@@ -1,12 +1,13 @@
 Name:           kylin-video
 Version:        3.1.4
-Release:        3
+Release:        4
 Summary:        A powerful video player
 License:        GPL-2.0+
 URL:            https://gitee.com/openkylin/kylin-video
 Source0:        kylin-video-3.1.4.tar.gz
 Patch01:         0001-fix-compile-error-of-kylin-video.patch
 Patch02:        0002-Repair-the-user-guide-does-not-work.patch
+Patch03:        0003-fix-clang.patch
 
 BuildRequires:  ffmpeg-devel
 BuildRequires:  libcrystalhd-devel
@@ -38,14 +39,16 @@ Front-end for MPlayer and MPV Qt5 Mplayer and MPV front-end, with basic features
 It supports both x86 and ARM platform, and supports most of the audio and video formatsprep
 
 %prep
-%setup -q
-%patch01 -p1
-%patch02 -p1
+%autosetup -p1
 
 %build
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} ..
+%if "%toolchain" == "clang"
+	%{qmake_qt5} -spec linux-clang ..
+%else 
+	%{qmake_qt5} ..
+%endif
 %{make_build} -j4
 popd 
 
@@ -63,6 +66,9 @@ popd
 
 
 %changelog   
+* Tue Jun 20 2023 yoo <sunyuechi@iscas.ac.cn> - 3.1.4-4
+- fix clang build error
+
 * Mon Mar 06 2023 peijiankang <peijiankang@kylinos.cn> - 3.1.4-3
 - Repair the user guide does not work
 

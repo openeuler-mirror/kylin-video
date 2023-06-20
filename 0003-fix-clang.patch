@@ -1,0 +1,12 @@
+diff -u -r kylin-video-3.1.4/src/main.cpp kylin-video-3.1.4/src/main.cpp
+--- kylin-video-3.1.4/src/main.cpp	2022-07-26 09:45:40.000000000 +0800
++++ kylin-video-3.1.4/src/main.cpp	2023-06-17 21:04:07.000000000 +0800
+@@ -40,7 +40,7 @@
+     QStringList arg_list;
+     for(int i=1; i<argc; i++)
+     {
+-        QFileInfo f(QString(argv[i]));
++				QFileInfo f(argv[i]);
+         if(f.isFile())
+             arg_list << f.absoluteFilePath();
+     }
